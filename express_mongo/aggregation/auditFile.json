@@ -1,0 +1,8 @@
+{
+  "$lookup": {
+    "from": "uploads.files",
+    "localField": "mediaContent",
+    "foreignField": "_id",
+    "as": "file"
+  }
+}
