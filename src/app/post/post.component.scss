@@ -1,0 +1,203 @@
+.section {
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.section.main-content {
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .post-title {
+    font-size: 1.5em;
+    align-self: baseline;
+  }
+
+  .post-category {
+    font-size: 1em;
+    align-self: baseline;
+    color: var(--black);
+  }
+}
+
+.main-content {
+  .text {
+    // different than feed
+    margin-bottom: 0.75rem;
+
+    padding: 0 0.75rem;
+    font-size: 1.1em;
+  }
+
+  .image,
+  .video,
+  .audio {
+    .content {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .audio .content audio {
+    width: 100%;
+  }
+}
+
+.section.caption {
+  padding: 0 0.5rem;
+  line-height: 1.25em;
+}
+
+.post-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1em;
+  .likes {
+    cursor: pointer;
+
+    .fa,
+    .fas,
+    .far {
+      transform-origin: center;
+      &::before {
+        color: inherit;
+        transition: color ease-in-out;
+      }
+    }
+  }
+
+  button {
+    all: unset;
+    i {
+      font-size: 1.2em;
+    }
+  }
+}
+
+.views-date {
+  display: flex;
+  justify-content: space-between;
+
+  .date-posted,
+  .views {
+    font-size: 0.75rem;
+    color: var(--black);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  .tag-title {
+    padding: 0.2rem 0;
+    margin: 0.2rem 0 0.2rem 0;
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+
+  .tag {
+    border: 1px solid rgb(75, 75, 75);
+    border-radius: 0.75rem;
+    margin: 0.2rem 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+      margin-right: 0.2rem;
+    }
+
+    .tag-link {
+      padding: 0.2rem 0.5rem;
+      text-align: center;
+    }
+  }
+}
+
+.comments {
+  label {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+  .comment-container {
+    display: flex;
+    flex-direction: column;
+    .comment {
+      background-color: var(--pale-grey);
+      border-radius: 0.75rem;
+      padding: 0.5rem 1rem;
+
+      margin-bottom: 0.3rem;
+
+      .date-posted {
+        font-size: 0.75rem;
+        color: var(--black);
+      }
+    }
+  }
+
+  .add-comment-section {
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+
+    width: 100%;
+    border: 1px solid rgb(75, 75, 75);
+
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      all: unset;
+      padding: 0.5rem 0.75rem;
+      max-width: 75%;
+
+      &::placeholder {
+        font-size: 1em;
+        color: var(--black);
+      }
+    }
+    .send-comment {
+      --square: 45px;
+      all: unset;
+
+      width: var(--square);
+      height: var(--square);
+      text-align: center;
+      font-size: 1.3em;
+      color: var(--black);
+    }
+  }
+}
+
+// device sizes
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 765px;
+$breakpoint-desktop: 1024px;
+
+//tablet
+@media only screen and (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+  .section {
+    width: 100%;
+    max-width: var(--max-section-width);
+    margin: 0 auto;
+  }
+}
+//laptop
+@media only screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+  .section {
+    width: 100%;
+    max-width: var(--max-section-width);
+    margin: 0 auto;
+  }
+}
+// desktop
+@media screen and (min-width: $breakpoint-desktop) {
+  .section {
+    width: 100%;
+    max-width: var(--max-section-width);
+    margin: 0 auto;
+  }
+}
