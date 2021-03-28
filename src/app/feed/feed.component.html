@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="no-post" *ngIf="showNoPost">
+    <div class="emoji">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    </div>
+    <div class="title">Sorry! No posts available</div>
+    <div class="body">New posts will be available soon!</div>
+  </div>
+
+  <div class="post" *ngFor="let post of posts">
+    <div class="section header">
+      <div class="post-title">{{ post.title }}</div>
+      <div class="post-category">{{ post.category }}</div>
+    </div>
+    <div class="section main-content">
+      <a (click)="detectTap(post)">
+        <div class="text" *ngIf="post.category === 'text'">
+          <p class="content">{{ post.textContent }}</p>
+        </div>
+        <div class="image" *ngIf="post.category === 'image'">
+          <img class="content" src="{{ post.filesrc }}" alt="post-image" />
+        </div>
+        <div class="video" *ngIf="post.category === 'video'">
+          <div class="play-btn">
+            <i class="fa fa-play" aria-hidden="true"></i>
+          </div>
+          <video class="content">
+            <source src="{{ post.filesrc }}" type="{{ post.file.contentType }}" />
+          </video>
+        </div>
+        <div class="audio" *ngIf="post.category === 'audio'">
+          <div class="play-btn">
+            <i class="fa fa-music" aria-hidden="true"></i>
+          </div>
+          <div class="title">&nbsp;&nbsp;{{ post.title }}</div>
+          <div class="play-hologram">PLAY</div>
+          <div class="music-hologram">music.</div>
+        </div>
+      </a>
+    </div>
+    <div class="section caption" *ngIf="post.category !== 'text'">
+      {{ post.textContent }}
+    </div>
+    <div class="section post-stat">
+      <div class="likes" (click)="likeThisPost(post)">
+        {{ post.likes }}
+        <button>
+          <i class="far fa-heart" aria-hidden="true" [@likeAnimation]="post.isBeingLiked ? 'start' : 'end'"></i>
+        </button>
+      </div>
+      <div class="comments-count">
+        {{ post.comments.length }}
+        <button>
+          <i class="far fa-comment" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="section views-date">
+      <div class="views">{{ post.views }}&nbsp;views</div>
+      <div class="date-posted">
+        {{ post.datePosted.toDateString() }}
+      </div>
+    </div>
+  </div>
+
+  <app-loading [message]="loadingMessage" *ngIf="isLoading"></app-loading>
+
+  <!-- automate below code -->
+  <div class="observe"></div>
+
+  <div class="end-of-post" *ngIf="showEndOfPosts">
+    <div class="header">🥳&nbsp;Hurray!&nbsp;🥳</div>
+    <div class="main">You Have Made Till The End</div>
+    <div class="sub">
+      Thank you for spending time on <span class="app-title">InstaFeed</span>
+    </div>
+  </div>
+</div>
+<a routerLink="/new-post" class="new-post-btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
